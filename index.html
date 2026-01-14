@@ -5,36 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Devocional 365 Dias com Maria 2026</title>
     
-    <!-- Preconnect para Ativos de Performance -->
+    <!-- Critical Preconnects -->
     <link rel="preconnect" href="https://i.imgur.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- CSS Consolidado (Build) -->
-    <link rel="stylesheet" href="index.css">
+    <!-- Critical CSS Inline (Above-the-fold) -->
+    <style>
+      :root { --bg: #002147; --accent: #facc15; }
+      body { background-color: var(--bg); margin: 0; font-family: sans-serif; color: white; overflow-x: hidden; }
+      #root { min-height: 100vh; }
+      .initial-load-bg { background: radial-gradient(circle at 50% 50%, #003366 0%, #002147 100%); }
+    </style>
 
-    <!-- UTMify & Tracking (Deferred para não bloquear renderização) -->
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+    <!-- UTMify & Pixel -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
     <script>
       window.pixelId = "6963e7338865dfc533dac328";
-      (function() {
-        var a = document.createElement("script");
-        a.async = true; a.defer = true;
-        a.src = "https://cdn.utmify.com.br/scripts/pixel/pixel.js";
-        document.head.appendChild(a);
-      })();
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
     </script>
 
-    <!-- Meta Pixel -->
-    <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '2276750582811314');
-      fbq('track', 'PageView');
-    </script>
-
-    <!-- Tailwind CDN (Para utilitários) -->
+    <!-- Performance: Defer Tailwind & Non-critical Assets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+      body { font-family: 'Poppins', sans-serif; font-display: swap; }
+      @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      .animate-marquee { display: flex; width: max-content; animation: marquee 80s linear infinite; will-change: transform; }
+      @keyframes pulse-button { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      .animate-pulse-button { animation: pulse-button 2s ease-in-out infinite; }
+    </style>
     
     <script type="importmap">
     {
@@ -47,8 +59,7 @@
     </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2276750582811314&ev=PageView&noscript=1"/></noscript>
+  <body class="initial-load-bg">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

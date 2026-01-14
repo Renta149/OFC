@@ -10,9 +10,6 @@ import { FEATURES } from './constants';
 
 const App: React.FC = () => {
   const scrollToOffers = () => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'ViewContent');
-    }
     document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -22,13 +19,13 @@ const App: React.FC = () => {
   };
 
   const MONTH_COVERS = [
-    { name: 'Janeiro', url: 'https://i.imgur.com/904DX13.png' },
-    { name: 'Fevereiro', url: 'https://i.imgur.com/TFzi1Ib.png' },
-    { name: 'Março', url: 'https://i.imgur.com/UL1iCSa.png' },
-    { name: 'Abril', url: 'https://i.imgur.com/kFmApLJ.png' },
-    { name: 'Maio', url: 'https://i.imgur.com/2FpTgkF.png' },
-    { name: 'Junho', url: 'https://i.imgur.com/XdwPlX2.png' },
-    { name: 'Julho', url: 'https://i.imgur.com/A9qM5oB.png' },
+    { name: 'Janeiro', url: 'https://i.imgur.com/TFjIscJ.png' },
+    { name: 'Fevereiro', url: 'https://i.imgur.com/PduPkTT.png' },
+    { name: 'Março', url: 'https://i.imgur.com/o02Zdet.png' },
+    { name: 'Abril', url: 'https://i.imgur.com/UVAGQWk.png' },
+    { name: 'Maio', url: 'https://i.imgur.com/hVdnkwo.png' },
+    { name: 'Junho', url: 'https://i.imgur.com/rpOoUPC.png' },
+    { name: 'Julho', url: 'https://i.imgur.com/CIWSda7.png' },
   ];
 
   const marqueeItems = [...MONTH_COVERS, ...MONTH_COVERS];
@@ -37,6 +34,7 @@ const App: React.FC = () => {
     <div className="min-h-screen text-white overflow-x-hidden selection:bg-yellow-400 selection:text-blue-900 bg-[#002147]">
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,_#003366_0%,_#002147_100%)] -z-10 opacity-50"></div>
 
+      {/* Ribbon de Oferta do Topo */}
       <div className="bg-red-600 text-white text-center py-3 px-2 font-black text-lg sm:text-2xl md:text-4xl shadow-xl relative z-50 whitespace-nowrap overflow-hidden flex items-center justify-center gap-3 uppercase">
         <span>
           oferta válida somente hoje: <span className="underline underline-offset-4 decoration-white/40">{getCurrentDate()}</span>
@@ -44,11 +42,20 @@ const App: React.FC = () => {
       </div>
 
       <header className="px-6 pt-12 pb-0 text-center mx-auto">
-        {/* ELEMENTO LCP - PRIORIDADE MÁXIMA */}
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-bold leading-[1.1] mb-6 tracking-tight">
+            <span className="text-yellow-300">365 dias com maria</span> Devocional diário - Edição 2026
+          </h1>
+          <h2 className="text-lg md:text-2xl font-normal opacity-80 leading-relaxed mb-12 max-w-3xl mx-auto">
+            Um devocional diário com inspirações, meditações e orações para <span className="text-yellow-300 font-bold">aprofundar sua espiritualidade mariana</span> e <span className="text-yellow-300 font-bold">fortalecer sua caminhada com Cristo</span>
+          </h2>
+        </div>
+
+        {/* Mockup Centralizado (LCP Optimized) */}
         <div className="relative flex justify-center pt-4 mb-16 w-full max-w-6xl mx-auto">
           <div className="absolute inset-0 bg-blue-500/20 blur-[150px] rounded-full scale-110 animate-pulse"></div>
           <img 
-            src="https://i.imgur.com/qcPpwX6.png" 
+            src="https://i.imgur.com/MofIt7h.png" 
             alt="Devocional 365 Dias com Maria Bundle" 
             className="w-full h-auto relative z-10 drop-shadow-[0_35px_60px_rgba(0,0,0,0.6)]"
             width="1200"
@@ -80,7 +87,10 @@ const App: React.FC = () => {
         <div className="relative w-full overflow-hidden mb-8 py-6">
           <div className="animate-marquee gap-8 flex items-center">
             {marqueeItems.map((item, idx) => (
-              <div key={idx} className="w-56 md:w-80 flex-shrink-0">
+              <div 
+                key={idx} 
+                className="w-56 md:w-80 flex-shrink-0"
+              >
                 <div className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-white/10 group bg-black/20">
                   <img 
                     src={item.url} 
@@ -106,6 +116,7 @@ const App: React.FC = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-16 tracking-tight italic">
             O que você encontrará nesta jornada...
           </h2>
+          
           <div className="grid md:grid-cols-2 gap-10">
             {FEATURES.map((feature, idx) => (
               <div key={idx} className="bg-white/5 p-8 rounded-2xl border border-white/10 transition-colors">
@@ -124,12 +135,20 @@ const App: React.FC = () => {
 
       <section id="ofertas" className="px-6 pt-24 pb-0">
         <div className="max-w-6xl mx-auto text-center">
+          
           <BonusSection />
+
           <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Escolha seu plano para 2026</h2>
-            <p className="text-lg opacity-70 italic font-normal">Receba acesso imediate e comece sua jornada de fé</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+              Escolha seu plano para 2026
+            </h2>
+            <p className="text-lg opacity-70 italic font-normal">
+              Receba acesso imediate e comece sua jornada de fé
+            </p>
           </div>
+
           <OfferBox />
+          
           <div className="mt-12 mb-12 flex flex-col items-center gap-6 opacity-40">
             <p className="text-xs font-bold uppercase tracking-[0.2em]">Pagamento Seguro & Criptografado</p>
             <div className="flex gap-4">
@@ -139,8 +158,11 @@ const App: React.FC = () => {
               <i className="fa-solid fa-pix text-2xl"></i>
             </div>
           </div>
+
           <GuaranteeSection />
+          
           <AuthorSection />
+
           <FAQSection />
         </div>
       </section>
@@ -149,6 +171,7 @@ const App: React.FC = () => {
         <p className="text-lg text-white/60 mb-4 font-bold">"A minha alma engrandece ao Senhor"</p>
         <p className="font-normal">&copy; 2026 Devocional 365 Dias com Maria. Todos os direitos reservados.</p>
       </footer>
+
       <SalesNotification />
     </div>
   );
